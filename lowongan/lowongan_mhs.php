@@ -18,7 +18,7 @@
       <a href="welcome.php" id="logo-container" href="#" class="brand-logo">Home</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Lowongan</a></li>
-        <li><a href="#">Profi<l/a></li>
+        <li><a href="#">Profil<l/a></li>
         <li><a href="#">Log</a></li>
       </ul>
    </div>
