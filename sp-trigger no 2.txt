@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION tambah_pelamar_diterima()
+	RETURNS trigger AS $$
+	DECLARE
+	BEGIN
+	IF new.id_st_lamaran = 3 THEN
+		UPDATE lowongan set jumlah_pelamar_diterima = jumlah_pelamar_diterima + 1
+		WHERE idlowongan = NEW.idlowongan;
+		RETURN NEW;
+	ELSE 
+		RETURN NULL;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tambah_pelamar_diterima
+AFTER UPDATE of id_st_lamaran on lamaran
+FOR EACH ROW
+EXECUTE PROCEDURE tambah_pelamar_diterima();
