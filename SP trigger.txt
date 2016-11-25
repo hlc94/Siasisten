@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION tambah_lowongan
 	RETURNS "trigger" AS $$
 	DECLARE
 	BEGIN
-	UPDATE lowongan set jumlah_asisten = jumlah_asisten + NEW.jumlah_asisten
+	UPDATE lowongan set id_st_lamaran = id_st_lamaran + NEW.id_st_lamaran
 	WHERE idlowongan = NEW.baruidlowongan;
 	RETURN NEW;
 END;
