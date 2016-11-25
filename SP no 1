@@ -1,0 +1,15 @@
+CREATE TRIGGER tambah_lowongan
+AFTER INSERT
+ON lamaran
+FOR EACH ROW
+EXECUTE PROCEDURE tambah_lowongan();
+
+CREATE OR REPLACE FUNCTION tambah_lowongan()
+	RETURNS trigger AS $$
+	DECLARE
+	BEGIN
+	UPDATE lowongan set jumlah_pelamar = jumlah_pelamar + 1
+	WHERE idlowongan = NEW.idlowongan;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
