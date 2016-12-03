@@ -1,3 +1,17 @@
+<?php
+
+include 'dbconfig.php';
+
+$_SESSION['username']='admin';
+
+session_start();
+/*if(!$_SESSION['username'])  
+{  
+  header("Location: login.php");//redirect to login page to secure the welcome page without login access.  
+}  */
+	
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -29,52 +43,45 @@
       <h1 class="header center orange-text">Daftar Lowongan</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
-          <table class='highlight bordered'>
-          <thead>
-            <tr>
-              <th>Kode</th>
-              <th>Mata Kuliah</th>
-              <th>Dosen Pengajar</th>
-              <th>Status</th>
-              <th>Jumlah lowongan</th>
-              <th>Jumlah pelamar</th> 
-              <th>Jumlah pelamar diterima</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CS1232</td>
-              <td>Basis Data</td>
-              <td>Daniel</td>
-              <td>Tutup</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td><a href="#"><img src="../images/edit.png" width="20" height="20"></a> <a href="#"><img src="../images/delete.png" width="20" height="20"></a></td>
-            </tr>
-            <tr>
-              <td>CS1232</td>
-              <td>Basis Data Lanjut</td>
-              <td>Anto, Bimo</td>
-              <td>Buka</td>
-              <td>3</td>
-              <td>3</td>
-              <td>2</td>
-              <td><a href="#"><img src="../images/edit.png" width="20" height="20"></a> <a href="#"><img src="../images/delete.png" width="20" height="20"></a></td>
-            </tr>
-            <tr>
-              <td>CS1232</td>
-              <td>Dasar-Dasar Pemrograman</td>
-              <td>Charlie</td>
-              <td>Buka</td>
-              <td>2</td>
-              <td>1</td>
-              <td>0</td>
-              <td><a href="#"><img src="../images/edit.png" width="20" height="20"></a> <a href="#"><img src="../images/delete.png" width="20" height="20"></a></td>
-            </tr>
-          </tbody>
-        </table>
+          <?php
+
+            $query="SELECT l.idlowongan, km.kode_mk, mk.nama as nama_mk, ds.nama as nama_dosen, l.status, l.jumlah_asisten, l.jumlah_pelamar, l.jumlah_pelamar_diterima
+                    FROM kelas_mk km, mata_kuliah mk, dosen ds, lowongan l
+                    WHERE km.idkelasmk=l.idkelasmk
+                    AND km.kode_mk=mk.kode
+                    AND l.nipdosenpembuka=ds.nip";
+            $result = $connect->query($query);
+            if ($result->num_rows > 0) {
+              echo 
+                "<table class='highlight bordered'>
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Mata Kuliah</th>
+                    <th>Dosen Pengajar</th>
+                    <th>Status</th>
+                    <th>Jumlah lowongan</th>
+                    <th>Jumlah pelamar</th> 
+                    <th>Jumlah pelamar diterima</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>";
+               while($row = $result->fetch_assoc()) {
+                echo  
+                  "<tr>
+                    <td>".$row["kode_mk"]."</td>
+                    <td>".$row["nama_mk"]."</td>
+                    <td>".$row["nama_dosen"]."</td>
+                    <td>".$row["status"]."</td>
+                    <td>".$row["jumlah_asisten"]."</td>
+                    <td>".$row["jumlah_pelamar"]."</td>
+                    <td>".$row["jumlah_pelamar_diterima"]."</td>
+                    <td><a href='buka_lowongan.php?id=".$row["idlowongan"]."'><img src='../images/edit.png' width='20' height='20'></a> <a href='deleteLowongan_admin.php?id=".$row["idlowongan"]."'><img src='../images/delete.png' width='20' height='20'></a></td>
+                  </tr>
+                </tbody>
+              </table>";
+          ?>
         </div>
         <br>
     </div>
