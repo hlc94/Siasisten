@@ -47,9 +47,9 @@ session_start();
                 <?php
                   $getTerm="SELECT semester::text || ', ' || tahun::text
                             FROM term
-                            ORDER BY tahun desc limit 1;"
-                  $result = $connect->query($getTerm);
-                  $row = pg_fetch_array($result);
+                            ORDER BY tahun desc limit 1";
+                  $result = pg_query($conn, $getTerm);
+                  $row = pg_fetch_assoc($result);
                   $tahun=$row["tahun"];
                   $semester = $row["semester"];
                   if ($semester==1) 
@@ -65,7 +65,7 @@ session_start();
                     $semester="Pendek";
                   }
                 ?>
-                <input name='term' type='text' value=<?php echo $semester ", " $tahun;?>>
+                <input name='term' type='text' value='<?php echo $semester;  echo $tahun;?>'>
                 <label for='term' class="active">Term</label>
               </div>
             </div>

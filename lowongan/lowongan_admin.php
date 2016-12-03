@@ -50,7 +50,7 @@ session_start();
                     WHERE km.idkelasmk=l.idkelasmk
                     AND km.kode_mk=mk.kode
                     AND l.nipdosenpembuka=ds.nip";
-            $result = $connect->query($query);
+            $result = pg_query($conn, $query);
             if ($result->num_rows > 0) {
               echo 
                 "<table class='highlight bordered'>

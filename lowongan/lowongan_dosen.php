@@ -50,8 +50,8 @@ session_start();
                     AND km.kode_mk=mk.kode
                     AND l.nipdosenpembuka=ds.nip
                     AND ds.nama='$namadosen'";
-            $result = $connect->query($query);
-            if ($result->num_rows > 0) {
+            $result = pg_query($conn, $query);
+            if (pg_num_rows($result) > 0) {
               echo 
                 "<table class='highlight bordered'>
                 <thead>
@@ -67,7 +67,7 @@ session_start();
                   </tr>
                 </thead>
                 <tbody>";
-              while($row = $result->fetch_assoc()) {
+              while($row=pg_fetch_assoc($result)) {
               echo 
                 "<tr>
                   <td>".$row["kode_mk"]."</td>
