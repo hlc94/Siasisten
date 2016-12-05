@@ -71,7 +71,7 @@ session_start();
             </div>
             <div class='row'>
               <div class='input-field col s12'>
-                <input name='matkul' type='text' value="CS1234 Basis Data Lanjut">
+                <input name='matkul' type='text'>
                 <label for='matkul' class="active">Mata Kuliah</label>
               </div>
             </div>

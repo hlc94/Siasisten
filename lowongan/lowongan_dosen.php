@@ -2,8 +2,6 @@
 
 include 'dbconfig.php';
 
-$_SESSION['username']='rinisagitaayu12';
-
 session_start();
 /*if(!$_SESSION['username'])  
 {  

@@ -29,54 +29,51 @@
       <h1 class="header center orange-text">Daftar Lowongan</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
-          <table class='highlight bordered'>
-          <thead>
-            <tr>
-              <th>Kode</th>
-              <th>Mata Kuliah</th>
-              <th>Dosen Pengajar</th>
-              <th>Status</th>
-              <th>Jumlah lowongan</th>
-              <th>Jumlah pelamar</th> 
-              <th>Jumlah pelamar diterima</th>
-              <th>Status Lamaran</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CS1232</td>
-              <td>Basis Data</td>
-              <td>Daniel</td>
-              <td>Tutup</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>CS1232</td>
-              <td>Basis Data Lanjut</td>
-              <td>Anto, Bimo</td>
-              <td>Buka</td>
-              <td>3</td>
-              <td>3</td>
-              <td>2</td>
-              <td>Melamar</td>
-              <td><a href="#">Batal</a></td>
-            </tr>
-            <tr>
-              <td>CS1232</td>
-              <td>Dasar-Dasar Pemrograman</td>
-              <td>Charlie</td>
-              <td>Buka</td>
-              <td>2</td>
-              <td>1</td>
-              <td>0</td>
-              <td></td>
-              <td><a href="#">Daftar</td>
-            </tr>
+        <?php
+          $query="SELECT mk.kode, mk.nama as nama_mk, ds.nama as nama_dosen, lo.status, lo.jumlah_asisten, lo.jumlah_pelamar, lo.jumlah_pelamar_diterima, la.id_st_lamaran
+                  from mata_kuliah mk, dosen ds, lowongan lo, lamaran la, kelas_mk km
+                  where lo.idkelasmk=km.idkelasmk
+                  and mk.kode=km.kode_mk
+                  and lo.nipdosenpembuka=ds.nip
+                  and la.idlowongan=lo.idlowongan
+                  group by mk.kode;"
+          $result = pg_query($conn, $query);
+          if (pg_num_rows($result) > 0) {
+            echo
+            "<table class='highlight bordered'>
+            <thead>
+              <tr>
+                <th>Kode</th>
+                <th>Mata Kuliah</th>
+                <th>Dosen Pengajar</th>
+                <th>Status</th>
+                <th>Jumlah lowongan</th>
+                <th>Jumlah pelamar</th> 
+                <th>Jumlah pelamar diterima</th>
+                <th>Status Lamaran</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>";
+            while($row=pg_fetch_assoc($result)) {
+              echo
+                "<tr>
+                  <th>".$row["kode"]."</th>
+                  <th>".$row["nama_mk"]."</th>
+                  <th>".$row["nama_dosen"]."</th>
+                  <th>".$row["status"]."</th>
+                  <th>".$row["jumlah_asisten"]."</th>
+                  <th>".$row["jumlah_pelamar"]."</th> 
+                  <th>".$row["jumlah_pelamar_diterima"]."</th>
+                  <th>".$row["id_st_lamaran"]."</th>";
+                  if ($row["id_st_lamaran"]==1) {
+                    echo "<th><a href='deleteLamaran.php?id=</th>";
+                  }
+                  
+                </tr>";
+            }
+          }
+        ?> 
           </tbody>
         </table>
         </div>
