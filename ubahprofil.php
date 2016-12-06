@@ -92,7 +92,7 @@ if(isset($_POST['btn-update']))
     <tr>
     <td>
     <button type="submit" name="btn-update"><strong>UPDATE</strong></button>
-    <button type="submit"><strong>CANCEL</strong></button>
+    <input type="button" value="Cancel" onclick="window.location.href='ubahprofil.php'">
     </td>
     </tr>
     
