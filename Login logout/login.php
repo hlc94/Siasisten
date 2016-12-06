@@ -8,7 +8,7 @@ if(isset($_POST['btn-login']))
 	$password=mysqli_real_escape_string($connect,$_POST['password']);
 
 	$check_mahasiswa = "SELECT * FROM mahasiswa WHERE username = '$username' AND password = '$password'";
-	$check_dosen = "SELECT * FROM dosen WHERE username = '$username' AND password = '$password'";
+	$check_dosen = "SELECT * FROM dosen WHERE username = '$usernamedosen' AND password = '$passworddosen'";
 
 	$run1=mysqli_query($connect, $check_dosen);
 	$run=mysqli_query($connect, $check_mahasiswa);
@@ -20,10 +20,10 @@ if(isset($_POST['btn-login']))
 
 	if (mysqli_num_rows($run)) {
 		$_SESSION['username']=$username;
-		header("location:haha.php");
+		echo"<li><a href='bukalowongan.php'>Buka lowongan</a></li>
+		<li><a href='lowongan_mhs.php'>Lowongan mahasiswa</a></li>";
 	}else{
-		header("location:login.php");
-		echo "incorrect username/password";
+		echo "incorrect username/password mahasiswa";
 	}
 
 	/*
@@ -32,14 +32,24 @@ if(isset($_POST['btn-login']))
 	*/
 
 	if (mysqli_num_rows($run1)) {
-		$_SESSION['username']=$username;
-		header("location:hoho.php");
+		$_SESSION['username']=$usernamedosen;
+		echo"<li><a href='lowongan_dosen.php'>Lowongan dosen</a></li>";
 	}else{
-		header("location:login.php");
-		echo "incorrect username/password";
+		echo "incorrect username/password dosen";
 		
 	}
-	}
+	
+	/*
+	*bagian ini untuk validasi admin 
+	*
+	*/
+	
+	if($_SESSION["accID"]=="admin") {
+        	echo "<li><a href='testadmin.php'>Testing</a></li>;
+      	} else {
+        	echo "";
+      	}
+     }
 }
 ?>
 <!DOCTYPE html>
