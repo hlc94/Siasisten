@@ -8,7 +8,7 @@ $fetched_row=mysql_fetch_array($result_set);
 }
 if(isset($_POST['btn-update']))
 {
- // variables for input data
+// variables for input data
 //npm,nama,username,password,email-emailaktif,waktukosong,notelp,bank,norek,halamanmuka,foto
  $npm = $_POST['npm'];
  $nama = $_POST['nama'];
@@ -44,11 +44,27 @@ if(isset($_POST['btn-update']))
     <form method="post">
     <table align="center">
     
-    <tr>
+     <tr>
+     echo '<td>'. $fetched_row['npm'] . '</td>';
+     </tr>
+     
+     <tr>
+     echo '<td>'. $fetched_row['nama'] . '</td>';
+     </tr>
+     
+     <tr>
+     echo '<td>'. $fetched_row['username'] . '</td>';
+     </tr>
+     
+     <tr>
     <td><input type="password" name="password" placeholder="password" value="<?php echo $fetched_row['password']; ?>" required /></td>
     </tr>
     
-    <tr>
+     <tr>
+     echo '<td>'. $fetched_row['email'] . '</td>';
+     </tr>
+     
+     <tr>
     <td><input type="email" name="email_aktif" placeholder="email_aktif" value="<?php echo $fetched_row['email_aktif']; ?>" required /></td>
     </tr>
     
