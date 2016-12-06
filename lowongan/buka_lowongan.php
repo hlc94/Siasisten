@@ -48,7 +48,7 @@ session_start();
                   $getTerm="SELECT semester::text || ', ' || tahun::text
                             FROM term
                             ORDER BY tahun desc limit 1";
-                  $result = pg_query($conn, $getTerm);
+                  $result=$connect->query($getTerm);
                   $row = pg_fetch_assoc($result);
                   $tahun=$row["tahun"];
                   $semester = $row["semester"];

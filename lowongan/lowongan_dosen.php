@@ -75,7 +75,7 @@ session_start();
                   <td>".$row["jumlah_asisten"]."</td>
                   <td>".$row["jumlah_pelamar"]."</td>
                   <td>".$row["jumlah_pelamar_diterima"]."</td>
-                  <td><a href='buka_lowongan.php?id=".$row["idlowongan"]."'><img src='../images/edit.png' width='20' height='20'></a> <a href='deleteLowongan_admin.php?id=".$row["idlowongan"]."'><img src='../images/delete.png' width='20' height='20'></a></td>
+                  <td><a href='buka_lowongan.php?id=".$row["idlowongan"]."'><img src='../images/edit.png' width='20' height='20'></a> <a href='deleteLowongan.php?id=".$row["idlowongan"]."'><img src='../images/delete.png' width='20' height='20'></a></td>
                 </tr>
               </tbody>
             </table>";

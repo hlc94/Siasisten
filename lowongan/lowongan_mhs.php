@@ -30,15 +30,17 @@
       <div class="row center">
         <div style='overflow-x:auto'>
         <?php
-          $query="SELECT mk.kode, mk.nama as nama_mk, ds.nama as nama_dosen, lo.status, lo.jumlah_asisten, lo.jumlah_pelamar, lo.jumlah_pelamar_diterima, la.id_st_lamaran
-                  from mata_kuliah mk, dosen ds, lowongan lo, lamaran la, kelas_mk km
-                  where lo.idkelasmk=km.idkelasmk
-                  and mk.kode=km.kode_mk
-                  and lo.nipdosenpembuka=ds.nip
-                  and la.idlowongan=lo.idlowongan
-                  group by mk.kode;"
-          $result = pg_query($conn, $query);
-          if (pg_num_rows($result) > 0) {
+          $query="SELECT mk.kode, mk.nama, ds.nama, lo.status, lo.jumlah_asisten, lo.jumlah_pelamar, lo.jumlah_pelamar_diterima, sla.status
+                  FROM lowongan lo
+                  INNER JOIN kelas_mk km ON km.idkelasmk=lo.idkelasmk
+                  INNER JOIN mata_kuliah mk ON km.kode_mk=mk.kode
+                  INNER JOIN lamaran la ON la.idlowongan=lo.idlowongan
+                  INNER JOIN status_lamaran sla ON sla.id=la.id_st_lamaran
+                  INNER JOIN mahasiswa mhs ON la.npm=mhs.npm
+                  INNER JOIN dosen ds ON lo.nipdosenpembuka=ds.nip
+                  WHERE mhs.username='pferguson0';"
+          $result=$connect->query($query);
+          if ($result->num_rows > 0) {
             echo
             "<table class='highlight bordered'>
             <thead>
@@ -55,19 +57,24 @@
               </tr>
             </thead>
             <tbody>";
-            while($row=pg_fetch_assoc($result)) {
+            while($row=$result->fetch_assoc()) {
               echo
                 "<tr>
-                  <th>".$row["kode"]."</th>
-                  <th>".$row["nama_mk"]."</th>
-                  <th>".$row["nama_dosen"]."</th>
-                  <th>".$row["status"]."</th>
-                  <th>".$row["jumlah_asisten"]."</th>
-                  <th>".$row["jumlah_pelamar"]."</th> 
-                  <th>".$row["jumlah_pelamar_diterima"]."</th>
-                  <th>".$row["id_st_lamaran"]."</th>";
-                  if ($row["id_st_lamaran"]==1) {
-                    echo "<th><a href='deleteLamaran.php?id=</th>";
+                  <td>".$row["kode"]."</td>
+                  <td>".$row["nama_mk"]."</td>
+                  <td>".$row["nama_dosen"]."</td>
+                  <td>".$row["status"]."</td>
+                  <td>".$row["jumlah_asisten"]."</td>
+                  <td>".$row["jumlah_pelamar"]."</td> 
+                  <td>".$row["jumlah_pelamar_diterima"]."</td>
+                  <td>".$row["id_st_lamaran"]."</td>";
+                  if ($row["id_st_lamaran"]==1) 
+                  {
+                    echo "<td><a href='deleteLamaran.php?id=</td>";
+                  }
+                  elseif ($row["id_st_lamaran"]==3)
+                  {
+                    echo "<td></td>";
                   }
                   
                 </tr>";

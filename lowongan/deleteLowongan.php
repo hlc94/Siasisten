@@ -6,19 +6,28 @@
 
 	$idLowongan=$_GET["id"];
 
-	$sql="DELETE FROM LOWONGAN WHERE idLowongan='$idLowongan'";
+	var r = confirm("Yakin ingin menghapus lowongan?");
 
-	pg_query($conn, $sql);
+	if (r == true)
+	{
+		$sql="DELETE FROM LOWONGAN WHERE idLowongan='$idLowongan'";
 
-	if(pg_affected_rows($conn) > 0){
-		echo "<script type='text/javascript'>";
-	    echo "alert('Lowongan dihapus');
-	    location.href='lowongan_admin.php';";    
-	    echo "</script>";
-	} else {
-		echo "<script type='text/javascript'>";
-	    echo "alert('Gagal menghapus lowongan');
-	    location.href='lowongan_admin.php';";    
-	    echo "</script>";
-	}
+		pg_query($conn, $sql);
+
+		if(pg_affected_rows($conn) > 0){
+			echo "<script type='text/javascript'>";
+		    echo "alert('Lowongan dihapus');
+		    location.href='lowongan_admin.php';";    
+		    echo "</script>";
+		} else {
+			echo "<script type='text/javascript'>";
+		    echo "alert('Gagal menghapus lowongan');
+		    location.href='lowongan_admin.php';";    
+		    echo "</script>";
+		}
+    }
+    else
+    {
+    	
+    }
 ?>

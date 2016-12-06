@@ -50,8 +50,8 @@ session_start();
                     WHERE km.idkelasmk=l.idkelasmk
                     AND km.kode_mk=mk.kode
                     AND l.nipdosenpembuka=ds.nip";
-            $result = pg_query($conn, $query);
-            if (pg_num_rows($result) > 0) {
+            $result=$connect->query($query);
+            if ($result->num_rows > 0) {
               echo 
                 "<table class='highlight bordered'>
                 <thead>
@@ -67,7 +67,7 @@ session_start();
                   </tr>
                 </thead>
                 <tbody>";
-               while($row=pg_fetch_assoc($result)) {
+               while($row=$result->fetch_assoc()) {
                 echo  
                   "<tr>
                     <td>".$row["kode_mk"]."</td>
@@ -77,7 +77,7 @@ session_start();
                     <td>".$row["jumlah_asisten"]."</td>
                     <td>".$row["jumlah_pelamar"]."</td>
                     <td>".$row["jumlah_pelamar_diterima"]."</td>
-                    <td><a href='buka_lowongan.php?id=".$row["idlowongan"]."'><img src='../images/edit.png' width='20' height='20'></a> <a href='deleteLowongan_admin.php?id=".$row["idlowongan"]."'><img src='../images/delete.png' width='20' height='20'></a></td>
+                    <td><a href='buka_lowongan.php?id=".$row["idlowongan"]."'><img src='../images/edit.png' width='20' height='20'></a> <a href='deleteLowongan.php?id=".$row["idlowongan"]."'><img src='../images/delete.png' width='20' height='20'></a></td>
                   </tr>
                 </tbody>
               </table>";
