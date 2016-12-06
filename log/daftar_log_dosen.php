@@ -57,79 +57,21 @@
         <div style='overflow-x:auto'>
           <table class='highlight bordered'>
           <thead>
-            <tr>
-              <th>NPM</th>
-              <th>Nama</th>
-              <th>Durasi</th>
-              <th>Kategori</th>
-              <th>Tanggal</th>
-              <th>Jam Mulai</th> 
-              <th>Jam Selesai</th>
-              <th>Deskripsi Kerja</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>12160009</td>
-              <td>Nona</td>
-              <td>2</td>
-              <td>Mengoreksi</td>
-              <td>12-09-2016</td>
-              <td>09:00</td>
-              <td>11:00</td>
-              <td>Tugas 2</td>
-              <td>Disetujui</td>
-			  <td></td>
-            </tr>
-            <tr>
-              <td>12160009</td>
-              <td>Nona</td>
-              <td>2</td>
-              <td>Mengawas</td>
-              <td>12-09-2016</td>
-              <td>10:00</td>
-              <td>11:00</td>
-              <td>UTS</td>
-              <td>Ditolak</td>
-			  <td></td>
-            </tr>
-			<tr>
-              <td>12160009</td>
-              <td>Nona</td>
-              <td>2</td>
-              <td>Mengoreksi</td>
-              <td>10-09-2016</td>
-              <td>10:00</td>
-              <td>12:00</td>
-              <td>Tugas 1</td>
-              <td>Dilaporkan</td>
-			  <td></td>
-            </tr>
-			<tr>
-              <td>12160010</td>
-              <td>Maria</td>
-              <td>3</td>
-              <td>Mengoreksi</td>
-              <td>11-09-2016</td>
-              <td>09:00</td>
-              <td>12:00</td>
-              <td>Tugas 1</td>
-              <td>Dilaporkan</td>
-			  <td></td>
-            </tr>
-			<tr>
-              <td>12160010</td>
-              <td>Maria</td>
-              <td>3</td>
-              <td>Mengoreksi</td>
-              <td>11-09-2016</td>
-              <td>13:00</td>
-              <td>15:00</td>
-              <td>Tugas 2</td>
-              <td>-</td>
-			  <td></td>
-            </tr>
+            if (pg_num_rows($result) > 0){
+				
+				while($row=pg_fetch_assoc($result)){
+				echo
+					"<tr>
+						<td>echo $i; $i++;</td>
+						<td>".$row["nama_mk"]."</td>
+						<td>".$row["semester"]."</td>
+						<td>".$row["tahun_ajaran"]."</td>
+						<td>".$row["dosen"]."</td>
+						<td>".$row["log_asisten"]."</td>
+					
+					</tr>"
+				}
+			}
           </tbody>
         </table>
         </div>

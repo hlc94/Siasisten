@@ -29,9 +29,12 @@
       <h1 class="header center orange-text">CS1234 – Basis Data Lanjut</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
-		
+		<?php
 		  $namadosen=$_SESSION['username'];
-		  $query="";
+		  $query="SELECT nama, log
+				FROM mahasiswa, lamaran, status_lamaran, 
+				WHERE ";
+		  $result = pg_query($conn, $query);
           <table class='highlight bordered'>
           <thead>
             <tr>
@@ -45,12 +48,12 @@
 				while($row=pg_fetch_assoc($result)){
 				echo
 					"<tr>
-						<td></td>
+						<td>echo $i; $i++; </td>
 						<td>".$row["nama_asisten"]."</td>
 						<td>".$row["log_asisten"]."</td>
 					</tr>"
 				}
-			}
+			} ?>
           </tbody>
         </table>
         </div>

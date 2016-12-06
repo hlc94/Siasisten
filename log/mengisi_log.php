@@ -1,4 +1,4 @@
-<?php
+<<!DOCTYPE HTML>
 <html lang="en">
 <head>
   <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
@@ -28,9 +28,11 @@
       <br><br>
       <h1 class="header center orange-text">Log Asistensi Per Mata Kuliah</h1>
       <div class="row center">
-        <div style='overflow-x:auto'>
+        <div style='overflow-x:auto'> 
+		<?php
 		$namamahasiswa=$_SESSION['username']; //hanya mahasiswayang isi
-		$query="";
+		$query="SELECT kode_mk , semester, tahun_ajaran, dosen,
+				FROM KELAS_MK";
 		$result = pg_query($conn, $query);
           <table class='highlight bordered'>
           <thead>
@@ -44,13 +46,13 @@
             </tr>
           </thead>
           <tbody>
-            if (pg_num_rows($result) > 0){
+             if (pg_num_rows($result) > 0){
 				
 				while($row=pg_fetch_assoc($result)){
 				echo
 					"<tr>
-						<td></td>
-						<td>".$row["nama_mk"]."</td>
+						<td>echo $i; $i++;</td>
+						<td>".$row["id_mk"]. " - " .$row["nama_mk"]."</td>
 						<td>".$row["semester"]."</td>
 						<td>".$row["tahun_ajaran"]."</td>
 						<td>".$row["dosen"]."</td>
@@ -58,7 +60,7 @@
 					
 					</tr>"
 				}
-			}
+			} ?>
           </tbody>
         </table>
         </div>
@@ -76,4 +78,4 @@
     <script src="js/init.js"></script>
 
   </body>
-?>
+</html>

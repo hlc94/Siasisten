@@ -28,9 +28,10 @@
       <br><br>
       <h1 class="header center orange-text">Daftar Log</h1>
 	  <h1 class="header center orange-text">Basis Data Lanjut</h1>
+	  <button type="submit" name="btn-update"><strong>Tambah</strong></button>
       <div class="row center">
         <div style='overflow-x:auto'>
-		$namamahasiswa=$_SESSION['username'];
+		<?php $namamahasiswa=$_SESSION['username'];
 		$query="";
 		$result=pg_query($conn, $query);
 			<table class='highlight bordered'>
@@ -48,8 +49,10 @@
 			  <tbody>
 					if(pg_num_rows($result>0)){
 					echo
-						"<tr>
-						<td></td>
+					while($row=pg_fetch_assoc($result)){
+					echo
+					"<tr>
+						<td>echo $i; $i++;</td>
 						<td>".$row["kategori"]."</td>
 						<td>".$row["tanggal"]."</td>
 						<td>".$row["jam_mulai"]."</td>
@@ -59,7 +62,7 @@
 						<td>".$row["action"]."</td>
 					</tr>"
 						
-					}
+					} ?>
 			  </tbody>
 			</table>
         </div>
