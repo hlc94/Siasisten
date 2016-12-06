@@ -45,15 +45,15 @@ if(isset($_POST['btn-update']))
     <table align="center">
     
      <tr>
-     echo '<td>'. $fetched_row['npm'] . '</td>';
+     echo'<td>'. $fetched_row['npm'] . '</td>';
      </tr>
      
      <tr>
-     echo '<td>'. $fetched_row['nama'] . '</td>';
+     echo'<td>'. $fetched_row['nama'] . '</td>';
      </tr>
      
      <tr>
-     echo '<td>'. $fetched_row['username'] . '</td>';
+     echo'<td>'. $fetched_row['username'] . '</td>';
      </tr>
      
      <tr>
@@ -81,7 +81,7 @@ if(isset($_POST['btn-update']))
     </tr>
 
     <tr>
-    <td><input type="text" name="url_mukatab" placeholder="url_mukatab" value="<?php echo $fetched_row['url_mukatab']; ?>" required /></td>
+    <td><button type = "submit" name="url_mukatab" placeholder="url_mukatab" value="<?php echo $fetched_row['url_mukatab']; ?>" required /></td>
     </tr>
     
     <tr>
