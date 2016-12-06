@@ -32,37 +32,37 @@
           <form class="col s12" method="post">
             <div class='row'>
               <div class='input-field col s12'>
-                <input name='term' type='text'>
-                <label for='term' class="active">Kategori</label>
+                <input name='kategori' type='text' placeholder="Kategori">
+                <label for='kategori' class="active">Kategori</label>
               </div>
             </div>
             <div class='row'>
               <div class='input-field col s12'>
-                <input name='tanggal' type='text'>
+                <input name='tanggal' type='text' placeholder="Tanggal">
                 <label for='tanggal' class="active">Tanggal</label>
               </div>
             </div>
 			<div class='row'>
               <div class='input-field col s12'>
-                <input name='tanggal' type='text'>
+                <input name='jam_mulai' type='text' placeholder="120912 10:00:15">
                 <label for='tanggal' class="active">Jam Mulai</label>
               </div>
             </div>
 			<div class='row'>
               <div class='input-field col s12'>
-                <input name='tanggal' type='text'>
+                <input name='jam_selesai' type='text' placeholder="120912 12:00:15">
                 <label for='tanggal' class="active">Jam Selesai</label>
               </div>
             </div>
             <div class='row'>
               <div class='input-field col s12'>
-                <input name='jml_asisten' type='text'>
+                <input name='jml_asisten' type='text' placeholder="Deskripsi Kerja">
                 <label for='jml_asisten' class="active">Deskripsi Kerja</label>
               </div>
             </div>
             <div class='row center'>
-                <button class='btn waves-effect waves-light' type='submit' name='action'>Simpan<i class='material-icons right'>send</i></button>
-                <a href="#"><button class='btn waves-effect waves-light'>Batal</button>
+                <button class='btn waves-effect waves-light' type='submit' name='btn-save'>Simpan<i class='material-icons right'>send</i></button>
+                <a href="#"><button class='btn waves-effect waves-light' type='' name=''>Batal</button>
             </div>
           </form>
         </div>

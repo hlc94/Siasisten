@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<?php
 <html lang="en">
 <head>
   <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
@@ -29,6 +29,9 @@
       <h1 class="header center orange-text">Log Asistensi Per Mata Kuliah</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
+		$namamahasiswa=$_SESSION['username']; //hanya mahasiswayang isi
+		$query="";
+		$result = pg_query($conn, $query);
           <table class='highlight bordered'>
           <thead>
             <tr>
@@ -41,30 +44,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>CS1234 - Basis Data Lanjut</td>
-              <td>Ganjil</td>
-              <td>2016/2017</td>
-              <td>anto,bimo</td>
-              <td><u>lihat</u></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>CS1234 - Basis Data Lanjut</td>
-              <td>Genap</td>
-              <td>2015/2016</td>
-              <td>tono,sandi</td>
-              <td><u>lihat</u></td>
-            </tr>
-			<tr>
-              <td>3</td>
-              <td>CS1234 - Basis Data Lanjut</td>
-              <td>Ganjil</td>
-              <td>2015/2016</td>
-              <td>tono,jalu.wijaya</td>
-              <td><u>lihat</u></td>
-            </tr>
+            if (pg_num_rows($result) > 0){
+				
+				while($row=pg_fetch_assoc($result)){
+				echo
+					"<tr>
+						<td></td>
+						<td>".$row["nama_mk"]."</td>
+						<td>".$row["semester"]."</td>
+						<td>".$row["tahun_ajaran"]."</td>
+						<td>".$row["dosen"]."</td>
+						<td>".$row["log_asisten"]."</td>
+					
+					</tr>"
+				}
+			}
           </tbody>
         </table>
         </div>
@@ -82,4 +76,4 @@
     <script src="js/init.js"></script>
 
   </body>
-  </html>
+?>

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<?php
 <html lang="en">
 <head>
   <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
@@ -30,48 +30,38 @@
 	  <h1 class="header center orange-text">Basis Data Lanjut</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
-          <table class='highlight bordered'>
-          <thead>
-            <tr>
-              <th>Kategori</th>
-              <th>Tanggal</th>
-              <th>Jam Mulai</th>
-              <th>Jam Selesai</th>
-              <th>Deskripsi Kerja</th>
-              <th>Status</th>
-			  <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mengoreksi</td>
-              <td>12-09-2016</td>
-              <td>09:00</td>
-              <td>11:00</td>
-              <td>Tugas 2</td>
-              <td>-</td>
-			  <td><a href="#"><img src="../images/edit.png" width="20" height="20"></a> <a href="#"><img src="../images/delete.png" width="20" height="20"></a></td>
-            </tr>
-             <tr>
-              <td>Mengawas</td>
-              <td>12-09-2016</td>
-              <td>10:00</td>
-              <td>11:00</td>
-              <td>UTS</td>
-              <td>Disetujui</td>
-			  <td></td>
-            </tr>
-			 <tr>
-              <td>Mengoreksi</td>
-              <td>10-09-2016</td>
-              <td>10:00</td>
-              <td>12:00</td>
-              <td>Tugas 1</td>
-              <td>ditolak</td>
-			  <td></td>
-            </tr>
-          </tbody>
-        </table>
+		$namamahasiswa=$_SESSION['username'];
+		$query="";
+		$result=pg_query($conn, $query);
+			<table class='highlight bordered'>
+			  <thead> ///untuk mahasiswa
+				<tr>
+				  <th>Kategori</th>
+				  <th>Tanggal</th>
+				  <th>Jam Mulai</th>
+				  <th>Jam Selesai</th>
+				  <th>Deskripsi Kerja</th>
+				  <th>Status</th>
+				  <th>Action</th>
+				</tr>
+			  </thead>
+			  <tbody>
+					if(pg_num_rows($result>0)){
+					echo
+						"<tr>
+						<td></td>
+						<td>".$row["kategori"]."</td>
+						<td>".$row["tanggal"]."</td>
+						<td>".$row["jam_mulai"]."</td>
+						<td>".$row["jam_selesai"]."</td>
+						<td>".$row["deskripsi"]."</td>
+						<td>".$row["status"]."</td>
+						<td>".$row["action"]."</td>
+					</tr>"
+						
+					}
+			  </tbody>
+			</table>
         </div>
         <br>
     </div>
@@ -87,4 +77,4 @@
     <script src="js/init.js"></script>
 
   </body>
-  </html>
+ ?>

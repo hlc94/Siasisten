@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<?php
 <html lang="en">
 <head>
   <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
@@ -29,6 +29,9 @@
       <h1 class="header center orange-text">CS1234 – Basis Data Lanjut</h1>
       <div class="row center">
         <div style='overflow-x:auto'>
+		
+		  $namadosen=$_SESSION['username'];
+		  $query="";
           <table class='highlight bordered'>
           <thead>
             <tr>
@@ -38,21 +41,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Budi Sanjaya</td>
-              <td><u>Lihat Log Asisten</u></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Chanek</td>
-              <td><u>Lihat Log Asisten</u></td>
-            </tr>
-			<tr>
-              <td>3</td>
-              <td>Willy Wimpo</td>
-              <td><u>Lihat Log Asisten</u></td>
-            </tr>
+            if(pg_num_rows($result)>0){
+				while($row=pg_fetch_assoc($result)){
+				echo
+					"<tr>
+						<td></td>
+						<td>".$row["nama_asisten"]."</td>
+						<td>".$row["log_asisten"]."</td>
+					</tr>"
+				}
+			}
           </tbody>
         </table>
         </div>
@@ -70,4 +68,4 @@
     <script src="js/init.js"></script>
 
   </body>
-  </html>
+ ?>
